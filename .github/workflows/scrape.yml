@@ -1,0 +1,29 @@
+name: Jalankan Scraper Blibli
+
+on:
+  schedule:
+    # Jalan setiap jam 00:00 UTC (jam 07:00 pagi WIB)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Memunculkan tombol "Run workflow" agar bisa dites manual
+
+jobs:
+  scrape-data:
+    runs-on: ubuntu-latest # Server gratis dari GitHub yang sudah ada Chrome-nya
+
+    steps:
+      - name: Ambil kode dari repository
+        uses: actions/checkout@v3
+
+      - name: Siapkan Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install semua library
+        run: pip install -r requirements.txt
+
+      - name: Jalankan script scraper
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        run: python scrape_blibli.py
