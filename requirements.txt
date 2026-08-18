@@ -3,5 +3,6 @@ undetected-chromedriver
 beautifulsoup4
 pandas
 SQLAlchemy
+supabase
 psycopg2-binary
 python-dotenv
