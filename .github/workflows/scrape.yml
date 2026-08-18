@@ -2,8 +2,8 @@ name: Jalankan Scraper Blibli
 
 on:
   schedule:
-    # Jalan setiap jam 00:00 UTC (jam 07:00 pagi WIB)
-    - cron: '0 0 * * *'
+    # Gunakan cron untuk menjadwalkan workflow. Formatnya adalah "menit jam hari-bulan bulan hari-minggu"
+    - cron: '0 */6 * * *' # Jalan setiap 6 jam sekali
   workflow_dispatch: # Memunculkan tombol "Run workflow" agar bisa dites manual
 
 jobs:
