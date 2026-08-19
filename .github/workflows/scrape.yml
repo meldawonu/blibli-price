@@ -2,13 +2,12 @@ name: Jalankan Scraper Blibli
 
 on:
   schedule:
-    # Gunakan cron untuk menjadwalkan workflow. Formatnya adalah "menit jam hari-bulan bulan hari-minggu"
-    - cron: '0 */6 * * *' # Jalan setiap 6 jam sekali
-  workflow_dispatch: # Memunculkan tombol "Run workflow" agar bisa dites manual
+    - cron: '0 */6 * * *'
+  workflow_dispatch: 
 
 jobs:
   scrape-data:
-    runs-on: ubuntu-latest # Server gratis dari GitHub yang sudah ada Chrome-nya
+    runs-on: ubuntu-latest
 
     steps:
       - name: Ambil kode dari repository
@@ -17,9 +16,12 @@ jobs:
       - name: Siapkan Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11' # Versi Python yang digunakan
+          python-version: '3.11'
 
-      - name: Upgrade pip dan Install dependencies
+      - name: Install Google Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
