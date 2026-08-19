@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 import undetected_chromedriver as uc
 from supabase import create_client
 from dotenv import load_dotenv
+from undetected_chromedriver import options
 
 load_dotenv()
 
@@ -19,8 +20,8 @@ SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
-options = uc.ChromeOptions()
-options.add_argument("--headless=new") # sementara ini bisa digunakan jika ingin menjalankan browser tanpa GUI
+# options = uc.ChromeOptions()
+# options.add_argument("--headless=new") # sementara ini bisa digunakan jika ingin menjalankan browser tanpa GUI
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--disable-gpu")
